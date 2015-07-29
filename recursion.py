@@ -1,21 +1,21 @@
-def biggestint(l):
+def find_max(l):
     if len(l) == 1:
         return l[0]
     if (l[0] < l[1]):
         l2 = l[1:]
     else:
         l2 = [l[0]] + l[2:]
-    return biggestint(l2)
+    return find_max(l2)
 
 # Not my code but it's interesting to examine. (Hence all the print statements)
 # A good illustration of the nature of the stack I feel.
-def biggestint2(l):
+def find_max2(l):
     print l
     if len(l) == 1:
         print "hit if statement"
         return l[0]
     else:
-        m = biggestint2(l[1:])
+        m = find_max2(l[1:])
         print l
         print "m " + str(m)
         print l[0]
