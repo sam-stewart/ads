@@ -10,6 +10,6 @@ def my_walk(path):
         else:
             files.append(e)
     yield (path, dirs, files)
-    if dirs:
-        for e in my_walk(os.path.join(path, dirs.pop())):
+    for d in dirs:
+        for e in my_walk(os.path.join(path, d)):
             yield e
