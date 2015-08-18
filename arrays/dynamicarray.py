@@ -31,6 +31,7 @@ class DynamicArray(object):
         self._A[self._n-1] = None
         self._n -= 1
         if float(self._n)/self._capacity <= 0.25:
+            # Resize to double current n.
             self._resize(2 * self._n)
         return val
 
@@ -44,7 +45,7 @@ class DynamicArray(object):
     def _make_array(self, c):
         return (c * ctypes.py_object)()
 
-# Makes comparisons and switches as needed, progressively from the back of the array.
+# Makes comparisons and switches as needed, progressively from the back of the array. (Makes O(n) comparisons)
 # Binary search to determine the index before switching improves speed significantly, especially on large sets.
 class DynamicSortedArray(DynamicArray):
 
