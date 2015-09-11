@@ -15,12 +15,12 @@ class ArrayQueue:
 
     def first(self):
         if self.is_empty():
-            raise EmptyException("Queue is empty")
+            raise Exception('Empty queue')
         return self._data[self._front]
 
     def dequeue(self):
         if self.is_empty():
-            raise EmptyException("Queue is empty")
+            raise Exception('Queue is empty')
         answer = self._data[self._front]
         self._data[self._front] = None
         self._front = (self._front + 1) % len(self._data)
@@ -42,6 +42,3 @@ class ArrayQueue:
             self._data[k] = old[walk]
             walk = (1 + walk) % len(old)
         self._front = 0
-
-class EmptyException(Exception):
-    pass
