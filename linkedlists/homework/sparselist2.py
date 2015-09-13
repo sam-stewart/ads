@@ -1,6 +1,6 @@
 class SparseList(object):
-    """ A sparesely populated array-like structure implemented as linked list.
-    unpopulated fields default to zero. """
+    """ A sparesely populated fixed length array-like structure implemented as
+    a linked list. Unpopulated fields default to zero. """
 
     class _Node:
         __slots__ = '_element', '_prev', '_next', '_index'
@@ -22,6 +22,7 @@ class SparseList(object):
         return self._SIZE
 
     def __iter__(self):
+        """ Forward iteration for all items """
         index = 0
         while index < self._SIZE:  # Inefficient, getitem starts from head each call
             yield self.__getitem__(index)
