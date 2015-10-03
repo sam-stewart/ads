@@ -1,3 +1,6 @@
+from arrayqueue import ArrayQueue
+
+
 class Tree:
     """ ABC tree sutrcture """
 
@@ -15,6 +18,14 @@ class Tree:
         def __ne__(self, other):
             """ Return true if other does not represent some location """
             return not (self == other)
+
+    def __iter__(self):
+        for p in self.positions():
+            yield p.element()
+
+    def positions(self):
+        """ Generate an iteration of all positions using a traversal algorithm """
+        return self.breadthfirst()
 
     def root(self):
         """ Return Position representing the tree's root, or none """
@@ -70,3 +81,27 @@ class Tree:
             return 0
         else:
             return 1 + max(self._height2(c) for c in self.children(p))
+
+    def preorder(self):
+        """ Preorder iteration """
+        if not self.is_empty():
+            for p in self._subtree_preorder(self.root()):
+                yield p
+
+    def _subtree_preorder(self, p):
+        """ Generate a preorder iteration of positions in subtree rooted at p."""
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def breadthfirst(self):
+        """ Breadth first iteration of all tree positions """
+        if not self.is_empty():
+            fringe = ArrayQueue()
+            fringe.enqueue(self.root())
+            while not fringe.is_empty():
+                p = fringe.dequeue()
+                yield p
+                for c in self.children(p):
+                    fringe.enqueue(c)
