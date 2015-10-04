@@ -9,7 +9,10 @@ buyers = [{"name": "Sam", "bought": 0},
           {"name": "Rickie", "bought": 0},
           {"name": "Matt", "bought": 0}]
 
-sellers = [{"name": "Alex"}, {"name": "Daniel"}, {"name": "Thomas"}]
+sellers = [{"name": "Alex", "sold": 0},
+           {"name": "Daniel", "sold": 0},
+           {"name": "Thomas", "sold": 0}]
+
 buy_orders, sell_orders = PriorityQueue(), PriorityQueue()
 
 for e in buyers:
@@ -25,7 +28,10 @@ while len(buy_orders) != 0:
         pass
     else:
         buy[1]["bought"] += 100
-        sell_orders.remove_min()
+        sell_orders.remove_min()[1]["sold"] += 100
 
 for e in buyers:
     print e["name"] + " bought " + str(e["bought"]) + " shares"
+
+for e in sellers:
+    print e["name"] + " sold " + str(e["sold"]) + " shares"
