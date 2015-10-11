@@ -4,7 +4,7 @@ def check(s):
     dictionary = set(line.strip() for line in open('words'))
     if s in dictionary:
         return [s]
-    possibles = set(transpose(s) + extrachar(s) + delchar(s) + replace(s))
+    possibles = set(transpose(s) + extrachar(s) + missingchar(s) + replace(s))
     return list(dictionary.intersection(possibles))
 
 def transpose(s):
@@ -16,8 +16,13 @@ def extrachar(s):
     between two adjacent characters """
     return [s[:i+1] + c + s[i+1:] for i in range(len(s) - 1) for c in string.ascii_lowercase]
 
+def missingchar(s):
+    """ Return a list of all possible strings assuming user missed a single character """
+    return [s[:i] + c + s[i:] for i in range(len(s) + 1) for c in string.ascii_lowercase]
+
 def delchar(s):
-    """ Return a list of all possible strings deleting one character """
+    """ Return a list of possible strings with a single character deleted from
+    the original word """
     return [s[:i] + s[i+1:] for i in range(len(s))]
 
 def replace(s):
