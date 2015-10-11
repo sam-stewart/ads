@@ -4,7 +4,8 @@ def check(s):
     dictionary = set(line.strip() for line in open('words'))
     if s in dictionary:
         return [s]
-    possibles = set(transpose(s) + extrachar(s) + missingchar(s) + replace(s))
+    possibles = set(transpose(s) + extrachar(s) + missingchar(s) +
+                    delchar(s) + replace(s))
     return list(dictionary.intersection(possibles))
 
 def transpose(s):
