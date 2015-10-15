@@ -4,22 +4,21 @@ import sys
 import spellchecker
 import string
 
-def getwords(line):
-    for word in line.split():
-        word = word.translate(None, string.punctuation)
-        yield(word.strip().lower())
 
 def getline():
+    """ return a tuple containing a list of words pertaining to a line from a
+    file and the line number """
+    count = 1
     for line in open(sys.argv[1]):
-        yield line.strip()
+        yield line.lower().split(), count
+        count += 1
 
 if __name__ == "__main__":
-    line = 1
-    for l in getline():
-        for w in getwords(l):
+    for words, l in getline():
+        for w in words:
+            w = w.translate(None, string.punctuation)
             checked = spellchecker.check(w)
             if not checked:
-                print str(line) + "\t" + w + "\t" +  "No corrections."
+                print str(l) + "\t" + w + "\t" + "No corrections"
             elif checked[0] != w:
-                print str(line) + "\t" + w + "\t" + str(checked)
-        line += 1
+                print str(l) + "\t" + w + "\t" + str(checked)
