@@ -1,7 +1,7 @@
 import string
+dictionary = set(line.strip() for line in open('words'))
 
 def check(s):
-    dictionary = set(line.strip() for line in open('words'))
     if s in dictionary:
         return [s]
     possibles = set(transpose(s) + extrachar(s) + missingchar(s) +
