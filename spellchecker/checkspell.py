@@ -1,5 +1,4 @@
 #!/usr/bin/python
-import sys
 import argparse
 from spellchecker import SpellChecker
 import string
