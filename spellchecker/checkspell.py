@@ -23,7 +23,6 @@ def main(f, dictionary):
                 print str(l) + "\t" + w + "\t" + "No corrections"
             elif checked[0] != w:
                 print str(l) + "\t" + w + "\t" + str(checked)
-    print str(checker.cache)
 
 
 if __name__ == "__main__":
