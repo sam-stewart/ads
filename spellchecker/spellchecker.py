@@ -22,9 +22,9 @@ class SpellChecker(object):
             return clist
         possibles = self.transpose(s) | self.extrachar(s) | \
                         self.missingchar(s) | self.delchar(s) | self.replace(s)
-        clist = list(self.dictionary.intersection(possibles))
-        self.cache[s] = clist
-        return clist
+        cset = self.dictionary & possibles
+        self.cache[s] = cset
+        return cset
 
     def transpose(self, s):
         """ Return a set of all adjacent character transpositions of s """

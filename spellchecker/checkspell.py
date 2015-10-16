@@ -21,7 +21,7 @@ def main(f, dictionary):
             checked = checker.check(w)
             if not checked:
                 print str(l) + "\t" + w + "\t" + "No corrections"
-            elif checked[0] != w:
+            elif w not in checked:
                 print str(l) + "\t" + w + "\t" + str(checked)
 
 
