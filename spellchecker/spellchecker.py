@@ -3,20 +3,26 @@ import string
 
 class SpellChecker(object):
     """ Python spell checker implemented as described in problem 10.55 in
-    Algorithms and Structures with python. """
+    Algorithms and Structures with python. Keeps a naive cache of all
+    previously incorrectly spelt words and it's corrections """
 
     def __init__(self, dictfile):
         """ Accept a file reference and parse it into a set. Dictionary file
         should define each word on a new line """
         self.dictionary = set(line.strip().lower() for line in dictfile)
+        self.cache = {}
 
     def check(self, s):
         if s in self.dictionary:
             return [s]
+        clist = self.cache.get(s)
+        if clist is not None:
+            return clist
         possibles = set(self.transpose(s) + self.extrachar(s) +
                         self. missingchar(s) + self.delchar(s) + self.replace(s))
-        #cachedict[s] = {'cwords': possibles, 'count': 0}
-        return list(self.dictionary.intersection(possibles))
+        clist = list(self.dictionary.intersection(possibles))
+        self.cache[s] = clist
+        return clist
 
     def transpose(self, s):
         """ Return a list of all adjacent character transpositions of s """
