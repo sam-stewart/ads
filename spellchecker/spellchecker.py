@@ -9,9 +9,9 @@ class SpellChecker(object):
     def __init__(self, dictfile):
         """ Accept a file reference and parse it into a set. Dictionary file
         should define each word on a new line """
-        self.dictionary = set(
+        self.dictionary = {
             line.strip().lower().translate(None, string.punctuation)
-            for line in dictfile)
+            for line in dictfile}
         self.cache = {}
 
     def check(self, s):
