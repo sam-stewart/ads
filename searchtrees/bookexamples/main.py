@@ -14,7 +14,10 @@ def test_tree(tree):
 
 if __name__ == "__main__":
 
-    for c in [100, 200, 400]:
+    print('Testing search tree implementations, each tree is contructed ' +
+          'and broken down 1000 times per run.')
+
+    for c in [100, 200, 400, 800]:
         print('**** Total Elements: ' + str(c) + ' ****')
 
         print("BST: " + str(timeit('test_tree(t)',
