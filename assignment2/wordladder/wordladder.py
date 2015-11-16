@@ -35,13 +35,15 @@ def wordladder(base, target, dictionary):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Word Laders")
+    parser = argparse.ArgumentParser(description="A simple program to compute" +
+                                     " a word ladder between two words, using" +
+                                     " a supplied dictionary")
     parser.add_argument('-b', dest='base', required=True,
                         metavar='<word>',
-                        help='5 letter word to start the ladder')
+                        help='word to start the ladder')
     parser.add_argument('-t', dest='target', required=True,
                         metavar='<word>',
-                        help='5 letter target word')
+                        help='target word')
     parser.add_argument('-d', dest='dictionary', required=True,
                         type=file, metavar='<dictionary file>',
                         help='lexicon file')
