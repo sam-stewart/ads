@@ -41,10 +41,14 @@ def sort(l):
     """ Sort list of integers l in place with heap sort (mutates list) """
     # Track heap portion of list
     heapsize = 0
+
+    # Move from left to right, building a heap from the list
     for i in range(len(l)):
         heapsize += 1
         _upheap(l, heapsize - 1, heapsize)
 
+    # Move from right to left, swap maximum heap value (root) with last value,
+    # downheap new root.
     for i in range(len(l)):
         _swap(l, 0, heapsize -1)
         heapsize -= 1
