@@ -38,7 +38,8 @@ def _downheap(l, j, size):
             _downheap(l, large_child, size)
 
 def sort(l):
-    """ Sort list l in place with heap sort (mutates list) """
+    """ Sort list of integers l in place with heap sort (mutates list) """
+    # Track heap portion of list
     heapsize = 0
     for i in range(len(l)):
         heapsize += 1
