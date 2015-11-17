@@ -1,11 +1,11 @@
-""" A inplace quicksort module """
+""" In place, iterative quicksort module for sorting a python list """
 # a, b = left, right
 
 def _swap(l, i, j):
     l[i], l[j] = l[j], l[i]
 
 def _partition(l, a, b):
-    # Select last element as pivot: randomise later
+    # Select last element as pivot
     pivot = l[b]
     left = a
     right = b - 1
