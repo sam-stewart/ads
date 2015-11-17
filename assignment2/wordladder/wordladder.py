@@ -19,7 +19,7 @@ def wordladder(base, target, dictionary):
         # Get last word on ladder stack
         word = ladder[len(ladder) - 1]
         if word == target:
-            return str(ladder)
+            return ladder
         # Build all possible words one character different. If it's in
         # the lexicon, and not used, copy old ladder, add new word and add
         # to the queue
